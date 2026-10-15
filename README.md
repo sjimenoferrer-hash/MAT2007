@@ -3,7 +3,18 @@
 
 Author: Silvia Jimeno Ferrer (i6377278)
 
-## Question
+## Project description 
+
+This project compares Rotten Tomatoes critic scores (Tomatometer) with audience
+scores to answer two questions:
+
+1. Do critics and audiences give different average scores?
+2. Does the difference depend on the genre of the movie?
+
+For each movie the difference *critic score − audience score* is computed. The
+mean difference, its standard error of the mean (SEM = std / √n) and its
+significance (mean / SEM, in σ) are calculated for all movies and for each
+genre. A difference of 3σ or more is treated as significant.
 Do Rotten Tomatoes critics and audiences give different scores on average, and does the answer depend on the genre?
 
 ## Data
@@ -15,23 +26,33 @@ Only three out of the 22 columns are used:
 - `genres`: genres of the movie (several genres in one cell)
 
 ## Files
-| File | What it is |
-|---|---|
-| `rotten_tomatoes.py` | The analysis (one script, run it from top to bottom) |
-| `understanding_my_data.py` | First look at the data: columns, first rows, empty cells |
-| `rotten_tomatoes_movies.csv` | The data (put it in the same folder as the script) |
-| `figures/` | File that contains the plots made|
-| `genre_error bars.png | Mean difference per genre with sigma |
-| `difference_histogram.png | Difference between critic and audience scores|
-| `report.pdf` | The report |
+| File | Description |
+|------|-------------|
+| `rotten_tomatoes_movies.csv` | Input dataset (17,712 movies, 22 columns) |
+| `understanding_my_data.py` | Data exploration: columns, empty cells, score ranges |
+| `rotten_tomatoes.py` | Main analysis: tests, cleaning, differences, SEM/sigma, genre comparison, subsampling, figures |
+| `figures/` | Output plots: `difference_histogram.png`, `genre_errorbars.png` (created by the script) |
+| `genre_results.csv` | Per-genre results table (created by the script) |
+| `report.tex` | Project report (LaTeX) |
 
 ## How to run
-1. Install Python 3 and the packages:
-   `python -m pip install pandas numpy scipy matplotlib`
-2. Include the `rotten_tomatoes_movies.csv` file in the same folder as `rotten_tomatoes.py`.
-3. Open a terminal in that folder and run:
+## Requirements
+
+- Python 3
+- pandas
+- numpy
+- matplotlib
+- scipy
+
+Install with:
+
+```bash
+python -m pip install pandas numpy scipy matplotlib
+
+1. Include the `rotten_tomatoes_movies.csv` file in the same folder as `rotten_tomatoes.py`.
+2. Open a terminal in that folder and run:
    `python rotten_tomatoes.py`
-4. Close each plot window to continue. The script prints the results, saves the figures in `figures/`. 
+3. Close each plot window to continue. The script prints the results, saves the figures in `figures/`. 
 
 ## What the script does
 1. Runs small tests on its own functions (`All tests passed.`).
@@ -43,6 +64,17 @@ Only three out of the 22 columns are used:
 7. Saves a histogram of the differences and an error-bar plot per genre (error bars = 3 sigma).
 
 ## Main results
-- Mean difference (critic - audience) = 0.19 +/- 0.16 points = 1.2 sigma: no significant average difference.
-- Pearson correlation r = 0.654.
-- Six genres are more than 3 sigma away from 0: critics rate higher in Documentary, Classics, Art House and Horror; the audience rates higher in Comedy and Action & Adventure.
+- Overall mean difference: **0.19 ± 0.16 points (1.2σ)** — no average difference.
+- Standard deviation per movie: 21.6 points — individual movies differ a lot.
+- Six genres differ by more than 3σ:
+  - Critics rate higher: Documentary, Classics, Art House & International, Horror
+  - Audiences rate higher: Comedy, Action & Adventure
+
+
+## Limitations
+
+- Only the first listed genre is used for each movie (genres appear to be
+  listed alphabetically, so early-alphabet genres are over-represented).
+- 305 movies without both scores were excluded.
+- Subsampling shows the result is stable but does not prove the movies are
+  independent.
