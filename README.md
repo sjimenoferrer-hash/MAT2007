@@ -30,7 +30,7 @@ Only three out of the 22 columns are used:
 |------|-------------|
 | `rotten_tomatoes_movies.csv` | Input dataset (17,712 movies, 22 columns) |
 | `understanding_my_data.py` | Data exploration: columns, empty cells, score ranges |
-| `rotten_tomatoes.py` | Main analysis: tests, cleaning, differences, SEM/sigma, genre comparison, subsampling, figures |
+| `rotten_tomatoes_new.py` | Main analysis: tests, cleaning, differences, SEM/sigma, genre comparison, subsampling, figures |
 | `figures/` | Output plots: `difference_histogram.png`, `genre_errorbars.png` (created by the script) |
 | `genre_results.csv` | Per-genre results table (created by the script) |
 | `report.tex` | Project report (LaTeX) |
