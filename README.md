@@ -44,11 +44,6 @@ Only three out of the 22 columns are used:
 - matplotlib
 - scipy
 
-Install with:
-
-```bash
-python -m pip install pandas numpy scipy matplotlib
-
 1. Include the `rotten_tomatoes_movies.csv` file in the same folder as `rotten_tomatoes.py`.
 2. Open a terminal in that folder and run:
    `python rotten_tomatoes.py`
@@ -72,7 +67,6 @@ python -m pip install pandas numpy scipy matplotlib
 
 
 ## Limitations
-
 - Only the first listed genre is used for each movie (genres appear to be
   listed alphabetically, so early-alphabet genres are over-represented).
 - 305 movies without both scores were excluded.
